@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.basic-modal {
+  @apply text-black;
+}
+
+.basic-modal > .header {
+  @apply flex justify-between !important;
+  @apply bg-green-700 !important;
+  @apply text-white !important;
+}
+
+.basic-modal > .header > i {
+  @apply cursor-pointer;
+}
+
+.inmo-button-red {
+  @apply px-4 py-2 bg-red-600 
+  border border-transparent rounded-md font-semibold capitalize text-white 
+  hover:bg-red-700 active:bg-red-700 focus:outline-none focus:border-red-700 
+  focus:ring focus:ring-red-200 disabled:opacity-25 transition;
+}
+
+.register-button {
+  @apply block w-full max-w-xs mx-auto bg-green-700 hover:bg-green-800 focus:bg-green-800 text-white rounded-lg px-3 py-3 font-semibold !important;
+}
+
+.login-buttom {
+  @apply w-full flex justify-center bg-green-400  hover:bg-green-500 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500 !important;
+}
