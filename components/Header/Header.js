@@ -1,14 +1,25 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Icon } from "semantic-ui-react";
 import BasicModal from "../Modal/BasicModal";
 import Auth from "../Auth/Auth";
 import useAuth from "../../hooks/useAuth";
+import { getMeApi } from "../../api/users";
+import { getTypeUseApi } from "../../api/typeUse";
 
 export default function Header() {
+  const [typeUse, setTypeUse] = useState([]);
+  const [user, setUser] = useState(undefined);
   const [showModal, setshowModal] = useState(false);
   const [size, setSize] = useState("tiny");
   const { auth, logout } = useAuth();
+
+  useEffect(() => {
+    (async () => {
+      const response = await getMeApi(logout);
+      setUser(response);
+    })();
+  }, [auth]);
 
   const onShowModal = () => setshowModal(true);
   const onCloseModal = () => setshowModal(false);
@@ -39,10 +50,8 @@ export default function Header() {
             <Icon name="search" />
           </button>
         </div>
-        {auth ? (
-          <Logout logout={logout} />
-        ) : (
-          <Signin onShowModal={onShowModal} />
+        {user !== undefined && (
+          <MenuOptions logout={logout} onShowModal={onShowModal} user={user} />
         )}
       </div>
       <BasicModal
@@ -58,6 +67,27 @@ export default function Header() {
         />
       </BasicModal>
     </header>
+  );
+}
+
+function MenuOptions(props) {
+  const { logout, onShowModal, user } = props;
+
+  return (
+    <>
+      {user ? (
+        <>
+          <div className="flex items-baseline cursor-pointer">
+            <Icon name="user" />
+            <h3 className="capitalize">{user.username}</h3>
+          </div>
+
+          <Logout logout={logout} />
+        </>
+      ) : (
+        <Signin onShowModal={onShowModal} />
+      )}
+    </>
   );
 }
 
