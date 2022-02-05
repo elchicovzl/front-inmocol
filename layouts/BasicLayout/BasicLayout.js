@@ -1,17 +1,16 @@
-import Header from '../../components/Header';
+import Header from "../../components/Header";
+import Content from "../../components/Content";
 
 export default function BasicLayout(props) {
-    const { children } = props;
+  const { children } = props;
 
-    return (
-        <div className="max-w-7xl mx-auto">
-            <Header />
-            {/* begin content */}
-            <div className="bg-gray-300 w-full h-screen">
-
-            </div>
-            {/* finish content */}
-            {children}
-        </div>
-    );
+  return (
+    <div className="max-w-screen-xl mx-auto">
+      <Header />
+      {/* begin content */}
+      <Content />
+      {/* finish content */}
+      {children}
+    </div>
+  );
 }
