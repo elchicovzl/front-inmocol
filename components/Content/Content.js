@@ -15,7 +15,7 @@ export default function Content(props) {
   const [typeUse, setTypeUse] = useState([]);
   const [typeUSeSelect, settypeUSeSelect] = useState([]);
 
-  const limitPerPage = 5;
+  const limitPerPage = 10;
   const page = parseInt(query.pagina);
 
   useEffect(() => {
@@ -27,11 +27,8 @@ export default function Content(props) {
 
   useEffect(() => {
     (async () => {
-      console.log("type use es ");
-      console.log(typeUse);
       const response = await getLastPropertiesApi(limitPerPage, page, typeUse);
       if (size(response.data) > 0) {
-        console.log(response.data);
         setProperties(response.data);
         setTotalProperties(response.meta.pagination.total);
       } else {
@@ -42,21 +39,41 @@ export default function Content(props) {
   }, [query, typeUse]);
 
   return (
-    <div className="w-full">
-      <SelectTypeUse typeUSeSelect={typeUSeSelect} setTypeUse={setTypeUse} />
-      {!properties && <Loader active>Cargando propiedades</Loader>}
-      {properties && size(properties) === 0 && (
-        <div>
-          <h3>No hay juegos</h3>
+    <div className="">
+      <div className="relative max-w-screen-xl mx-auto  first-letter">
+        <div className="absolute  w-1/2 text-white z-30 top-52">
+          <h2 className="text-6xl text-white uppercase font-bold">
+            Encuentra el Inmueble a tu gusto.
+          </h2>
+          <p className="mt-5 text-lg">
+            It is a long established fact that a reader will be distracted by
+            the readable content of a page when looking at its layout. The point
+            of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters,
+          </p>
+          <h3 className="text-white w-40 text-center mt-5 bg-green-600 px-4 py-2 hover:bg-green-900 rounded-full cursor-pointer">
+            Registrate Ya
+          </h3>
         </div>
-      )}
-      {totalProperties > 0 && <ListProperties properties={properties} />}
+      </div>
+      <section className="bg-fixed hero"></section>
 
-      <Pagination
-        total={totalProperties}
-        page={query.pagina ? parseInt(query.pagina) : 1}
-        limitPerPage={limitPerPage}
-      />
+      <div className="max-w-screen-xl mx-auto">
+        <SelectTypeUse typeUSeSelect={typeUSeSelect} setTypeUse={setTypeUse} />
+        {!properties && <Loader active>Cargando propiedades</Loader>}
+        {properties && size(properties) === 0 && (
+          <div>
+            <h3>No hay juegos</h3>
+          </div>
+        )}
+        {totalProperties > 0 && <ListProperties properties={properties} />}
+
+        <Pagination
+          total={totalProperties}
+          page={query.pagina ? parseInt(query.pagina) : 1}
+          limitPerPage={limitPerPage}
+        />
+      </div>
     </div>
   );
 }
