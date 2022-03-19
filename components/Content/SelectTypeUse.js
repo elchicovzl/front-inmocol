@@ -14,8 +14,6 @@ export function SelectTypeUse(props) {
 
   const change = (values) => {
     (async () => {
-      console.log("cambiando...");
-      console.log(values);
       setTypeUse(values);
     })();
   };

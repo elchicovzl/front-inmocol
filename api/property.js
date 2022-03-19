@@ -54,3 +54,32 @@ export async function getPropertiesByTypeUSe(typeUses, limit, page) {
     return null;
   }
 }
+
+export async function getPropertyByQuery(query) {
+  try {
+    const populate = `populate=*`;
+    const filters = [];
+    filters.push(`filters[$or][0][titulo][$contains]=${query}`);
+    filters.push(`filters[$or][1][direccion][$contains]=${query}`);
+
+    const url = `${BASE_PATH}/api/inmuebles?${filters.join("&")}&${populate}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+export async function getPropertyByUrl(path) {
+  try {
+    const url = `${BASE_PATH}/api/inmuebles/${path}?populate=*`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}

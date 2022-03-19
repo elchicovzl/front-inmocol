@@ -16,7 +16,7 @@ export default function RealState(props) {
   };
 
   return (
-    <Link href={`/properties/${attributes.url}`}>
+    <Link href={`/propiedades/${attributes.url}`}>
       <a>
         <div className="border rounded-lg cursor-pointer group overflow-hidden">
           <img
