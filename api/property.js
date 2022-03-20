@@ -83,3 +83,15 @@ export async function getPropertyByUrl(path) {
     return null;
   }
 }
+
+export async function getPopularPropertiesApi() {
+  try {
+    const url = `${BASE_PATH}/api/inmuebles?&filters[destacado]=true&populate=*&pagination[page]=1&pagination[pageSize]=3&sort[0]=createdAt:desc`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}

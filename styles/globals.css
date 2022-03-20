@@ -77,3 +77,11 @@
   left: 0;
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+.bg-white-black {
+  background: linear-gradient(180deg, #FFF 50%, #000 50%);
+}
+
+.card-image-text {
+  @apply flex justify-between !important;
+}

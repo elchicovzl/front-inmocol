@@ -18,18 +18,18 @@ export default function RealState(props) {
   return (
     <Link href={`/propiedades/${attributes.url}`}>
       <a>
-        <div className="border rounded-lg cursor-pointer group overflow-hidden">
+        <div className="border-0 cursor-pointer group overflow-hidden">
           <img
-            className="h-60 w-full object-cover group-hover:scale-105 transition-transform duration-200 ease-in-out"
+            className="h-80 w-full object-cover group-hover:scale-105 transition-transform duration-200 ease-in-out"
             src={urlForImage(attributes.imagen, "small")}
             alt=""
           />
           <div className="flex justify-between p-5 bg-white">
             <div>
-              <p className="text-lg font-bold w-full">
+              <p className="text-2xl font-bold w-full">
                 Desde ${attributes.precio.toLocaleString()} cop
               </p>
-              <p className="text-sm font-bold text-teal-700 w-full">
+              <p className="text-lg font-bold text-teal-700 w-full">
                 {attributes.area}m²{"  "}x{"  "} {attributes.habitaciones}
                 Hab <Icon name="bed" /> {attributes.sanitarios}Ba{" "}
                 <Icon name="shower" />

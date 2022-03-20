@@ -3,10 +3,13 @@ import { getLastPropertiesApi } from "../../api/property";
 import { getTypeUseApi } from "../../api/typeUse";
 import { SelectTypeUse } from "./SelectTypeUse";
 import { size } from "lodash";
-import { Loader } from "semantic-ui-react";
 import { useRouter } from "next/router";
 import ListProperties from "../ListProperties/ListProperties";
 import Pagination from "../Pagination";
+import { Image, Icon } from "semantic-ui-react";
+import PopularProperties from "../PopularProperties";
+import OurServices from "../OurServices";
+import Testimonial from "../Testimonial/Testimonial";
 
 export default function Content(props) {
   const { query } = useRouter();
@@ -58,21 +61,41 @@ export default function Content(props) {
       </div>
       <section className="bg-fixed hero"></section>
 
+      <section className="popular h-auto bg-white-black">
+        <div className="max-w-screen-xl mx-auto">
+          <PopularProperties />
+        </div>
+      </section>
+
+      <section className="services h-auto bg-white pt-20">
+        <div className="max-w-screen-xl mx-auto">
+          <OurServices />
+        </div>
+      </section>
+
+      <section className="services h-auto bg-black pt-20 pb-36">
+        <div className="max-w-screen-xl mx-auto">
+          <Testimonial />
+        </div>
+      </section>
+
       <div className="max-w-screen-xl mx-auto">
-        <SelectTypeUse typeUSeSelect={typeUSeSelect} setTypeUse={setTypeUse} />
+        
+
+        {/* <SelectTypeUse typeUSeSelect={typeUSeSelect} setTypeUse={setTypeUse} />
         {!properties && <Loader active>Cargando propiedades</Loader>}
         {properties && size(properties) === 0 && (
           <div>
             <h3>No hay juegos</h3>
           </div>
         )}
-        {totalProperties > 0 && <ListProperties properties={properties} />}
+        {totalProperties > 0 && <ListProperties properties={properties} />} */}
 
-        <Pagination
+        {/* <Pagination
           total={totalProperties}
           page={query.pagina ? parseInt(query.pagina) : 1}
           limitPerPage={limitPerPage}
-        />
+        /> */}
       </div>
     </div>
   );
